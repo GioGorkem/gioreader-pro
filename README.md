@@ -1,108 +1,106 @@
-# GioReader Pro 📖⚡
+# GioReader Pro
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](https://github.com/GioGorkem/gioreader-pro)
-[![Electron](https://img.shields.io/badge/Electron-Desktop_App-47848F?logo=electron&logoColor=white)](https://www.electronjs.org/)
-[![LaTeX](https://img.shields.io/badge/MathJax-v3%20LaTeX-00599C?logo=latex&logoColor=white)](https://www.mathjax.org/)
-[![PDF.js](https://img.shields.io/badge/PDF.js-Ultra--HD%20Canvas-E0234E)](https://mozilla.github.io/pdf.js/)
+An open-source, local-first academic desktop reading studio engineered for university engineering coursework, technical PDFs, and mathematical LaTeX documents.
 
-> **An AI-assisted, local-first academic desktop reader designed to organize and study intensive university engineering coursework, LaTeX mathematical derivations, and high-DPI PDF problem sets.**
+Built with **Electron**, **PDF.js**, and **MathJax v3**, GioReader Pro provides a distraction-free, high-performance study environment optimized for reading dense proofs, lecture notes, and engineering slides side-by-side.
 
 ---
 
-## 🎯 Background & Motivation
+## Key Capabilities
 
-Studying core Computer Engineering courses at **METU (ODTÜ)**—such as *Data Structures (`CENG213`), Discrete Computational Structures (`CENG223`), Differential Equations (`MATH219`), Electrical Circuits (`EE281`), and Economics (`ECON210`)*—requires juggling hundreds of pages of mathematical proofs, C/C++ implementations, and vector PDF problem sets.
-
-**GioReader Pro** was created through **AI-assisted rapid prototyping** as a personal desktop study environment to solve practical reading and organization challenges:
-* **Seamless Markdown + LaTeX:** Reading structured lecture notes with native MathJax v3 equation rendering.
-* **Crisp PDF Exploration:** Viewing supplementary problem sets and slides with high-DPI canvas supersampling (up to 800% zoom without blur) and smooth touchpad pan/zoom.
-* **Hierarchical Course Tree:** Organizing courses into Units $\to$ Lecture Parts $\to$ Supplementary Problem Set PDFs.
-* **Local-First Storage:** Keeping all study notes and JSON indices locally on disk with zero cloud dependency.
+* **High-DPI PDF Rendering:** Device-pixel-ratio supersampling via PDF.js web workers, delivering crisp vector text and diagrams even at 500%+ zoom levels.
+* **Native Mathematical Typesetting:** Inline (`$...$`) and display (`$$...$$`) LaTeX equation rendering powered by MathJax v3.
+* **Local-First Architecture:** Operates entirely offline on your local file system with zero cloud tracking or telemetry.
+* **Gesture & Shortcut Navigation:** Fluid touchpad pan, cursor-anchored zoom, and keyboard shortcuts tailored for rapid document exploration.
+* **Hierarchical Course Organization:** Structured navigation across course units, lecture modules, and supplementary problem sets.
 
 ---
 
-## ✨ Key Capabilities
-
-1. **Ultra-HD HiDPI PDF Canvas:** Custom device-pixel-ratio supersampling over PDF.js with dedicated Web Workers and anchor-point touchpad zoom.
-2. **Academic Mathematical Typesetting:** Native inline (`$...$`) and block (`$$...$$`) LaTeX rendering powered by MathJax v3.
-3. **Structured Course & Unit Hierarchy:** Clean separation between linear lecture parts and tree-structured supplementary exercise PDFs.
-4. **Offline-First File System Sync:** Instantaneous indexing and retrieval across 380+ lecture parts and 800,000+ words of study material.
-
----
-
-## 🏛️ System Overview
+## System Architecture
 
 ```mermaid
 flowchart TD
-    subgraph Host["Local File System (.gioreader-pro)"]
-        FS[("Markdown Study Notes\n& JSON Metadata Index")]
+    subgraph Storage["Local File System"]
+        FS[("Lecture Markdown Notes
+& Course Problem Set PDFs")]
     end
 
-    subgraph ElectronMain["Electron Main Process"]
-        IPC[IPC Bridge & Native File Dialogs]
-        FSApi[Local File System Sync]
+    subgraph MainProcess["Electron Main Process"]
+        IPC[IPC Bridge & System Dialogs]
+        FSSync[Local File Access Layer]
     end
 
-    subgraph Renderer["GioReader Study Interface"]
-        Store[Local State Store]
-        MDParser[Markdown & LaTeX Parser]
-        MathJax[MathJax v3 TeX Engine]
-        PDFWorker[PDF.js HiDPI Canvas Renderer]
-        UI[Minimalist Reading Stage]
+    subgraph RendererProcess["Reading Studio Interface"]
+        Store[Local View State]
+        MDParser[Markdown Document Parser]
+        MathEngine[MathJax v3 LaTeX Engine]
+        PDFCanvas[PDF.js Canvas Renderer (HiDPI)]
+        UI[Minimalist Reading View]
     end
 
-    FS <--> FSApi
-    FSApi <--> IPC
+    FS <--> FSSync
+    FSSync <--> IPC
     IPC <--> Store
-    Store --> MDParser --> MathJax --> UI
-    Store --> PDFWorker --> UI
+    Store --> MDParser --> MathEngine --> UI
+    Store --> PDFCanvas --> UI
 ```
 
 ---
 
-## 🚀 Getting Started
+## Installation & Setup
 
-### Prerequisites
-* [Node.js](https://nodejs.org/) (v18+ recommended)
+### Running from Source
 
-### Running Locally
+#### Prerequisites
+* [Node.js](https://nodejs.org/) (v18 or higher recommended)
+* `npm` (included with Node.js)
 
+#### Quickstart
 ```bash
-# Clone the repository
+# 1. Clone the repository
 git clone https://github.com/GioGorkem/gioreader-pro.git
 cd gioreader-pro
 
-# Install dependencies
+# 2. Install dependencies
 npm install
 
-# Start the desktop application
+# 3. Launch the desktop application
 npm start
+```
+
+### Building Standalone Executables
+```bash
+# Package the application for Windows (x64)
+npm run build
 ```
 
 ---
 
-## ⌨️ Reading Controls
+## Keyboard Shortcuts & Gestures
 
-| Shortcut / Gesture | Action |
+| Command / Gesture | Action |
 | :--- | :--- |
 | `Ctrl + +` / `Ctrl + -` | Zoom in / Zoom out |
 | `Ctrl + 0` | Reset zoom to 100% |
 | `Ctrl + Wheel` / `Pinch` | Smooth cursor-anchored zoom |
-| `Alt + Left` / `Alt + Right` | Previous / Next lecture part |
-| `Ctrl + F` | In-document search |
+| `Alt + Left` / `Alt + Right` | Navigate to Previous / Next lecture unit |
+| `Ctrl + F` | Search within open document |
 
 ---
 
-## 📄 License
-
-Licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+## Tech Stack
+* **Runtime:** Electron
+* **Engines:** PDF.js (Mozilla), MathJax v3
+* **Frontend:** Modern Vanilla JavaScript (ES6+), CSS3 Grid & Flexbox
+* **Target OS:** Windows, macOS, Linux
 
 ---
 
-## 👤 Author
+## License
+Distributed under the [MIT License](LICENSE).
 
+## Author
 **Görkem Akbulut**  
-* Computer Engineering Student @ Middle East Technical University (METU)  
+Department of Computer Engineering, Middle East Technical University (METU / ODTÜ)  
 * GitHub: [@GioGorkem](https://github.com/GioGorkem)  
 * LinkedIn: [linkedin.com/in/gorkem-akbulutt](https://www.linkedin.com/in/gorkem-akbulutt)
