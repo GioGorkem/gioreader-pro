@@ -2,143 +2,107 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](https://github.com/GioGorkem/gioreader-pro)
-[![Electron](https://img.shields.io/badge/Electron-30+-47848F?logo=electron&logoColor=white)](https://www.electronjs.org/)
+[![Electron](https://img.shields.io/badge/Electron-Desktop_App-47848F?logo=electron&logoColor=white)](https://www.electronjs.org/)
 [![LaTeX](https://img.shields.io/badge/MathJax-v3%20LaTeX-00599C?logo=latex&logoColor=white)](https://www.mathjax.org/)
 [![PDF.js](https://img.shields.io/badge/PDF.js-Ultra--HD%20Canvas-E0234E)](https://mozilla.github.io/pdf.js/)
 
-> **A high-performance, distraction-free desktop reader engineered for rigorous academic engineering coursework, complex LaTeX mathematical typesetting, and ultra-high-definition PDF slide exploration.**
+> **An AI-assisted, local-first academic desktop reader designed to organize and study intensive university engineering coursework, LaTeX mathematical derivations, and high-DPI PDF problem sets.**
 
 ---
 
-## 🎯 Overview & Philosophy
+## 🎯 Background & Motivation
 
-Modern engineering education involves reading dense lecture notes filled with complex mathematical formulas, multi-megabyte vector slide decks, and code implementations. Mainstream document readers and web applications often suffer from:
-* Clunky PDF rendering that loses sharpness when zoomed in on high-DPI displays.
-* Inability to seamlessly blend Markdown lecture explanations with native LaTeX math and supplementary PDF problem sets.
-* Heavy browser overhead, cloud lock-in, and distraction-heavy interfaces.
+Studying core Computer Engineering courses at **METU (ODTÜ)**—such as *Data Structures (`CENG213`), Discrete Computational Structures (`CENG223`), Differential Equations (`MATH219`), Electrical Circuits (`EE281`), and Economics (`ECON210`)*—requires juggling hundreds of pages of mathematical proofs, C/C++ implementations, and vector PDF problem sets.
 
-**GioReader Pro** was conceived and architected as a **local-first, ultra-responsive desktop application** that provides students and researchers with an Apple Books / Linear-grade reading environment for demanding subjects like *Data Structures, Discrete Mathematics, Differential Equations, and Electrical Circuits*.
-
----
-
-## ✨ Key Architectural Features
-
-### 🔍 1. Ultra-HD HiDPI Canvas & Zoom Engine
-* **Vector-Grade Sharpness:** Incorporates a custom device-pixel-ratio supersampling renderer over PDF.js, rendering pages with zero pixelation from **25% up to 800% zoom**.
-* **120 FPS Compositor:** Smooth two-finger touchpad pinch-to-zoom and frictionless panning with anchor-point preservation (zooms precisely where your cursor points).
-
-### 📐 2. Deep Mathematical Typography (LaTeX / MathJax v3)
-* **Academic Caliber Typesetting:** Native support for inline (`$...$`) and display (`$$...$$`) mathematical typesetting powered by MathJax v3 and KaTeX compatibility.
-* **Equation Numbering & Alignments:** Clean rendering of complex equation arrays, matrices, integrals, summations, and formal discrete logic symbols.
-
-### 🌳 3. Hierarchical Course Tree & Supplementary Problem Sets
-* **Structured Learning:** Organizes comprehensive university curricula into nested Courses $\to$ Units $\to$ Parts.
-* **Supplementary Tree:** Allows linking problem sets, exam questions, and sample exercise PDFs directly under core units without corrupting the linear lecture sequence.
-
-### 💾 4. Local-First & Zero Lock-In Storage Architecture
-* All study notes, metadata, and reading progress are stored locally on the user's disk as clean, standard Markdown (`.md`) and lightweight JSON indices.
-* Capable of instantaneously indexing and querying massive libraries containing **hundreds of parts and nearly a million words** with zero UI latency.
+**GioReader Pro** was created through **AI-assisted rapid prototyping** as a personal desktop study environment to solve practical reading and organization challenges:
+* **Seamless Markdown + LaTeX:** Reading structured lecture notes with native MathJax v3 equation rendering.
+* **Crisp PDF Exploration:** Viewing supplementary problem sets and slides with high-DPI canvas supersampling (up to 800% zoom without blur) and smooth touchpad pan/zoom.
+* **Hierarchical Course Tree:** Organizing courses into Units $\to$ Lecture Parts $\to$ Supplementary Problem Set PDFs.
+* **Local-First Storage:** Keeping all study notes and JSON indices locally on disk with zero cloud dependency.
 
 ---
 
-## 🏛️ System Architecture
+## ✨ Key Capabilities
+
+1. **Ultra-HD HiDPI PDF Canvas:** Custom device-pixel-ratio supersampling over PDF.js with dedicated Web Workers and anchor-point touchpad zoom.
+2. **Academic Mathematical Typesetting:** Native inline (`$...$`) and block (`$$...$$`) LaTeX rendering powered by MathJax v3.
+3. **Structured Course & Unit Hierarchy:** Clean separation between linear lecture parts and tree-structured supplementary exercise PDFs.
+4. **Offline-First File System Sync:** Instantaneous indexing and retrieval across 380+ lecture parts and 800,000+ words of study material.
+
+---
+
+## 🏛️ System Overview
 
 ```mermaid
 flowchart TD
-    subgraph Host["Desktop OS (Windows / macOS / Linux)"]
-        FS[("Local Disk (.gioreader-pro)\nMarkdown Files & JSON Index")]
+    subgraph Host["Local File System (.gioreader-pro)"]
+        FS[("Markdown Study Notes\n& JSON Metadata Index")]
     end
 
     subgraph ElectronMain["Electron Main Process"]
-        IPC[IPC Bridge & Native Dialogs]
-        FSApi[Local File System Controller]
-        WindowMgr[Window Lifecycle Manager]
+        IPC[IPC Bridge & Native File Dialogs]
+        FSApi[Local File System Sync]
     end
 
-    subgraph Renderer["Chromium Renderer (GioReader UI)"]
-        Store[Local State & Reactive Store]
-        
-        subgraph Engines["Rendering Engines"]
-            MDParser[Markdown & KaTeX Parser]
-            MathJax[MathJax v3 TeX Engine]
-            PDFWorker[PDF.js Web Worker]
-            CanvasCompositor[HiDPI Canvas Compositor]
-        end
-
-        UI[Linear/Apple Minimalist Reading Stage]
+    subgraph Renderer["GioReader Study Interface"]
+        Store[Local State Store]
+        MDParser[Markdown & LaTeX Parser]
+        MathJax[MathJax v3 TeX Engine]
+        PDFWorker[PDF.js HiDPI Canvas Renderer]
+        UI[Minimalist Reading Stage]
     end
 
     FS <--> FSApi
     FSApi <--> IPC
     IPC <--> Store
-    Store --> Engines
-    Engines --> UI
+    Store --> MDParser --> MathJax --> UI
+    Store --> PDFWorker --> UI
 ```
-
----
-
-## 🛠️ Tech Stack
-
-* **Core Shell:** [Electron](https://www.electronjs.org/) (Multi-process architecture, context isolation, zero remote vulnerability)
-* **Frontend:** Vanilla modern ES6+ (Zero bloated framework runtime, 60–120 FPS render loops)
-* **Document Engines:**
-  * [PDF.js](https://mozilla.github.io/pdf.js/) with dedicated Web Workers and standard font maps.
-  * [MathJax v3](https://www.mathjax.org/) for vector-sharp LaTeX rendering.
-* **Styling:** Custom CSS design system adhering to modern editorial typography standards (Paper, Warm, Dark, and Contrast modes).
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-* [Node.js](https://nodejs.org/) (v18.0.0 or higher recommended)
-* `npm` or `yarn`
+* [Node.js](https://nodejs.org/) (v18+ recommended)
 
-### Installation
+### Running Locally
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/GioGorkem/gioreader-pro.git
-   cd gioreader-pro
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/GioGorkem/gioreader-pro.git
+cd gioreader-pro
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+# Install dependencies
+npm install
 
-3. **Launch the application in development mode:**
-   ```bash
-   npm start
-   ```
-
-4. **Build standalone production executable:**
-   ```bash
-   npm run build
-   ```
+# Start the desktop application
+npm start
+```
 
 ---
 
-## ⌨️ Shortcuts & Reading Controls
+## ⌨️ Reading Controls
 
 | Shortcut / Gesture | Action |
 | :--- | :--- |
 | `Ctrl + +` / `Ctrl + -` | Zoom in / Zoom out |
 | `Ctrl + 0` | Reset zoom to 100% |
-| `Ctrl + Wheel` / `Pinch` | Smooth anchor-point zoom |
-| `Z` | Toggle Zen / Distraction-free reading stage |
-| `Alt + Left` / `Alt + Right` | Navigate to Previous / Next lecture part |
+| `Ctrl + Wheel` / `Pinch` | Smooth cursor-anchored zoom |
+| `Alt + Left` / `Alt + Right` | Previous / Next lecture part |
 | `Ctrl + F` | In-document search |
 
 ---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
+Licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
 ---
 
 ## 👤 Author
 
-**Görkem (GioGorkem)**  
-* GitHub: [@GioGorkem](https://github.com/GioGorkem)
+**Görkem Akbulut**  
+* Computer Engineering Student @ Middle East Technical University (METU)  
+* GitHub: [@GioGorkem](https://github.com/GioGorkem)  
+* LinkedIn: [linkedin.com/in/gorkem-akbulutt](https://www.linkedin.com/in/gorkem-akbulutt)
