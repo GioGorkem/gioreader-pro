@@ -1,0 +1,31 @@
+{
+  "name": "gioreader-pro",
+  "productName": "GioReader Pro",
+  "version": "2.0.0",
+  "description": "GioReader Pro — High-Performance Academic Markdown, LaTeX, and Ultra-HD PDF Reading Studio",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "node build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GioGorkem/gioreader-pro.git"
+  },
+  "keywords": [
+    "electron",
+    "pdf-reader",
+    "latex",
+    "mathjax",
+    "academic",
+    "markdown-reader",
+    "hidpi-canvas",
+    "study-tool"
+  ],
+  "author": "GioGorkem",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GioGorkem/gioreader-pro/issues"
+  },
+  "homepage": "https://github.com/GioGorkem/gioreader-pro#readme"
+}

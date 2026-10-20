@@ -1,0 +1,501 @@
+/* GioReader Pro — Studio CSS: BÖLÜM 2, 4, 5, 6, 7, 8, 9, 10, 11
+   Linear / Apple Books / Figma / Raycast Standartlarında Katman İzolasyonu, Sahne Estetiği ve Yüzen HUD */
+
+/* ==========================================================================
+   FAZ 2.1: KATMAN İZOLASYONU VE VIEWPORT KİLİDİ ("Üstten bir şeyler gelmesi" ve kayma önleyici)
+   ========================================================================== */
+html, body {
+  width: 100%;
+  overflow-x: clip;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: clip;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+/* Üst bar kendi yüksekliğinde sabitlenmeli ve altındaki çalışma alanından z-index ve stacking context olarak kesin ayrılmalı */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid color-mix(in srgb, var(--faint) 75%, transparent);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+}
+
+/* Zen / Odak Modunda Üst Bar Gizleme */
+:root[data-focus="1"] .bar,
+body.zen-active .bar {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+/* Ana İçerik Sahnesi: Dışarı asla taşamaz, transform izolasyonu */
+#view {
+  flex: 1 1 auto;
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - var(--bar-h));
+  z-index: 10;
+  transform-origin: 0 0;
+}
+
+/* ==========================================================================
+   FAZ 2.3: EL ARACI (HAND TOOL / GRAB-TO-PAN)
+   ========================================================================== */
+body.hand-tool-active,
+body.hand-tool-active * {
+  cursor: grab !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+body.hand-tool-panning,
+body.hand-tool-panning * {
+  cursor: grabbing !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+/* ==========================================================================
+   FAZ 4: PDF STÜDYO SAHNESİ (AMBIENT CANVAS STAGE) & KÂĞIT DERİNLİĞİ
+   ========================================================================== */
+.pdf-stage-container {
+  position: relative;
+  width: 100%;
+  padding: 32px 16px 120px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  background-color: var(--studio-bg, transparent);
+  background-image: var(--studio-pattern, none);
+  background-size: 24px 24px;
+  background-position: center center;
+  transition: background-color 0.25s ease;
+}
+
+/* Temalara Göre Stüdyo Sahne Dokuları */
+:root:not([data-theme="light"]):not([data-theme="sepia"]) .pdf-stage-container,
+:root[data-theme="dark"] .pdf-stage-container,
+:root[data-theme="oled"] .pdf-stage-container,
+:root[data-theme="nord"] .pdf-stage-container {
+  --studio-bg: #0C0E14;
+  --studio-pattern: radial-gradient(circle, rgba(255, 255, 255, 0.045) 1.2px, transparent 1.2px);
+}
+
+:root[data-theme="light"] .pdf-stage-container {
+  --studio-bg: #EDF0F4;
+  --studio-pattern: radial-gradient(circle, rgba(0, 0, 0, 0.04) 1.2px, transparent 1.2px);
+}
+
+:root[data-theme="sepia"] .pdf-stage-container {
+  --studio-bg: #E8DEC8;
+  --studio-pattern: radial-gradient(circle, rgba(90, 60, 20, 0.045) 1.2px, transparent 1.2px);
+}
+
+/* Kâğıt Yükselmesi (Apple Books / Acrobat Pro Elevation) */
+.pdf-page-card {
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.05),
+    0 14px 36px rgba(0, 0, 0, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  contain: layout style paint;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.pdf-page-card.active-page {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 20px 48px rgba(0, 0, 0, 0.22),
+    0 0 0 2px var(--accent);
+}
+
+/* Çift Sayfa Düzeni */
+.pdf-stage-container.spread-double {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.pdf-stage-container.spread-double .pdf-page-card {
+  width: calc(50% - 14px) !important;
+  max-width: 680px;
+}
+
+/* ==========================================================================
+   FAZ 4.3: AKILLI OKUMA FİLTRELERİ (ORIGINAL, DARK, SEPIA, HIGH-CONTRAST)
+   ========================================================================== */
+.pdf-stage-container[data-pfilter="orig"] .pdf-canvas-wrap canvas {
+  filter: none;
+}
+
+.pdf-stage-container[data-pfilter="dark"] .pdf-page-card:not(.raw-color) {
+  background: #11141A;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.pdf-stage-container[data-pfilter="dark"] .pdf-page-card:not(.raw-color) .pdf-canvas-wrap canvas {
+  filter: invert(0.92) hue-rotate(180deg) contrast(0.98) brightness(0.96);
+}
+
+.pdf-stage-container[data-pfilter="sepia"] .pdf-page-card:not(.raw-color) {
+  background: #F4EEDD;
+  border-color: rgba(140, 110, 60, 0.15);
+}
+.pdf-stage-container[data-pfilter="sepia"] .pdf-page-card:not(.raw-color) .pdf-canvas-wrap canvas {
+  filter: sepia(0.24) contrast(0.97) brightness(0.97);
+}
+
+.pdf-stage-container[data-pfilter="contrast"] .pdf-page-card:not(.raw-color) .pdf-canvas-wrap canvas {
+  filter: contrast(1.22) brightness(0.98);
+}
+
+/* ==========================================================================
+   FAZ 5: YÜZEN CAM KONTROL HAP (FLOATING GLASSMORPHIC HUD)
+   ========================================================================== */
+.pdf-hud-floating {
+  position: fixed;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid color-mix(in srgb, var(--fg) 12%, transparent);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.2),
+    0 24px 64px -12px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, border-color 0.2s ease;
+  user-select: none;
+}
+
+.pdf-hud-floating:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--faint));
+}
+
+.pdf-hud-floating.hud-hidden {
+  transform: translateX(-50%) translateY(90px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hud-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--fg);
+  padding: 0;
+  cursor: pointer;
+  transition: all 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.hud-btn:hover {
+  background: color-mix(in srgb, var(--fg) 9%, transparent);
+  color: var(--accent);
+  transform: scale(1.06);
+}
+
+.hud-btn:active {
+  transform: scale(0.94);
+}
+
+.hud-btn.active {
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.hud-divider {
+  width: 1px;
+  height: 18px;
+  background: color-mix(in srgb, var(--fg) 14%, transparent);
+  margin: 0 2px;
+}
+
+.hud-page-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 4px;
+  font: 500 12px/1 var(--f-mono);
+  color: var(--muted);
+}
+
+.hud-page-inp {
+  width: 38px;
+  height: 26px;
+  border-radius: 6px;
+  border: 1px solid var(--faint);
+  background: color-mix(in srgb, var(--bg) 60%, var(--surface));
+  color: var(--fg);
+  font: 600 12px/1 var(--f-mono);
+  text-align: center;
+  padding: 0 2px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.hud-page-inp:focus {
+  border-color: var(--accent);
+}
+
+.hud-zoom-btn {
+  min-width: 52px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: 6px;
+  border: 1px solid var(--faint);
+  background: color-mix(in srgb, var(--bg) 60%, var(--surface));
+  color: var(--fg);
+  font: 600 11.5px/1 var(--f-mono);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.hud-zoom-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   FAZ 6: AKILLI KENAR ÇUBUĞU (SIDEBAR DRAWER) & ÖNİZLEME THUMBNAILS
+   ========================================================================== */
+.pdf-sidebar-drawer {
+  position: fixed;
+  top: var(--bar-h);
+  left: 0;
+  bottom: 0;
+  width: 290px;
+  background: color-mix(in srgb, var(--surface) 95%, transparent);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-right: 1px solid var(--faint);
+  z-index: 50;
+  transform: translateX(-100%);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.pdf-sidebar-drawer.open {
+  transform: translateX(0);
+  box-shadow: 12px 0 36px rgba(0, 0, 0, 0.15);
+}
+
+.psb-tabs {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--faint);
+  background: color-mix(in srgb, var(--bg) 40%, var(--surface));
+}
+
+.psb-tab {
+  flex: 1;
+  padding: 11px 8px;
+  font: 500 12px/1 var(--f-ui);
+  color: var(--muted);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s ease;
+}
+
+.psb-tab:hover {
+  color: var(--fg);
+}
+
+.psb-tab.active {
+  color: var(--accent);
+  font-weight: 600;
+  border-bottom-color: var(--accent);
+}
+
+.psb-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.psb-thumbs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.psb-thumb-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--faint);
+  background: var(--bg);
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.psb-thumb-item:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.psb-thumb-item.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.psb-thumb-item canvas {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  border-radius: 3px;
+  background: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.psb-thumb-label {
+  font: 500 11.5px/1 var(--f-mono);
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   FAZ 9: SÜRÜKLE & BIRAK STÜDYO KARTI (PREMIUM DROPZONE / EMPTY STATE)
+   ========================================================================== */
+.studio-dropzone-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 32px;
+  border-radius: 16px;
+  border: 2px dashed color-mix(in srgb, var(--accent) 35%, var(--faint));
+  background: color-mix(in srgb, var(--surface) 60%, var(--bg));
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  text-align: center;
+}
+
+.studio-dropzone-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, color-mix(in srgb, var(--accent) 10%, transparent) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.studio-dropzone-card:hover,
+.studio-dropzone-card.drag-active {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px -8px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.studio-dropzone-card:hover::before,
+.studio-dropzone-card.drag-active::before {
+  opacity: 1;
+}
+
+.studio-dropzone-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.studio-dropzone-card:hover .studio-dropzone-icon,
+.studio-dropzone-card.drag-active .studio-dropzone-icon {
+  transform: translateY(-6px) scale(1.08);
+}
+
+/* ==========================================================================
+   FAZ 11: ZEN OKUMA MODU & ÇIKIŞ BUTONU
+   ========================================================================== */
+body.zen-active .pdf-bar {
+  opacity: 0;
+  transform: translateY(-20px);
+  pointer-events: none;
+}
+
+.zen-exit-pill {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 99;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 90%, transparent);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--faint);
+  color: var(--fg);
+  font: 500 12px/1 var(--f-ui);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.zen-exit-pill:hover {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: var(--accent);
+  transform: scale(1.04);
+}

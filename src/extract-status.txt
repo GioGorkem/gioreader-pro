@@ -1,0 +1,6 @@
+{
+  "cssLen": 51959,
+  "vendorLen": 2497616,
+  "appJsLen": 218857,
+  "appJsLines": 4063
+}

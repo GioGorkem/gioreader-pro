@@ -1,0 +1,1424 @@
+/* ============================================================================
+   GioReader Pro — Academic Studio Design System & 5-Theme Stylesheet
+   ============================================================================ */
+
+:root, html[data-theme="paper"] {
+  --bg: #f8f6f1;
+  --bg-elev: #ffffff;
+  --bg-soft: #f0ede5;
+  --bg-hover: #e7e2d7;
+  --fg: #171614;
+  --fg-2: #49463f;
+  --fg-3: #7c776d;
+  --line: #e4dfd4;
+  --line-2: #d2cbbd;
+  --accent: #2563eb;
+  --accent-2: #1d4ed8;
+  --accent-soft: rgba(37, 99, 235, 0.10);
+  --warm: #c2410c;
+  --warm-soft: rgba(194, 65, 12, 0.10);
+  --ok: #15803d;
+  --ok-soft: rgba(21, 128, 61, 0.11);
+  --pdf-badge: #dc2626;
+  --pdf-badge-soft: rgba(220, 38, 38, 0.11);
+  --code-bg: #f2EFE8;
+  --shadow-sm: 0 1px 3px rgba(20, 18, 14, 0.05), 0 1px 2px rgba(20, 18, 14, 0.03);
+  --shadow-md: 0 8px 24px -4px rgba(20, 18, 14, 0.08), 0 2px 6px rgba(20, 18, 14, 0.04);
+  --shadow-lg: 0 20px 44px -8px rgba(20, 18, 14, 0.16), 0 4px 12px rgba(20, 18, 14, 0.06);
+  --hl-y: rgba(250, 204, 21, 0.42);
+  --hl-g: rgba(74, 222, 128, 0.36);
+  --hl-b: rgba(96, 165, 250, 0.36);
+  --hl-p: rgba(244, 114, 182, 0.36);
+}
+
+html[data-theme="sepia"] {
+  --bg: #f3ecdc;
+  --bg-elev: #faf4e6;
+  --bg-soft: #eae0cb;
+  --bg-hover: #dfd3b9;
+  --fg: #241d13;
+  --fg-2: #544736;
+  --fg-3: #84735c;
+  --line: #dfd4be;
+  --line-2: #cbbca0;
+  --accent: #b45309;
+  --accent-2: #92400e;
+  --accent-soft: rgba(180, 83, 9, 0.13);
+  --warm: #9a3412;
+  --warm-soft: rgba(154, 52, 18, 0.12);
+  --ok: #166534;
+  --ok-soft: rgba(22, 101, 52, 0.13);
+  --pdf-badge: #b91c1c;
+  --pdf-badge-soft: rgba(185, 28, 28, 0.13);
+  --code-bg: #ebe1cc;
+  --shadow-sm: 0 1px 3px rgba(36, 29, 19, 0.07);
+  --shadow-md: 0 8px 24px -4px rgba(36, 29, 19, 0.11);
+  --shadow-lg: 0 20px 44px -8px rgba(36, 29, 19, 0.18);
+}
+
+html[data-theme="dark"] {
+  --bg: #111318;
+  --bg-elev: #181b22;
+  --bg-soft: #1f232c;
+  --bg-hover: #282d38;
+  --fg: #e7e9ee;
+  --fg-2: #a9b0bc;
+  --fg-3: #6e7685;
+  --line: #252934;
+  --line-2: #343a48;
+  --accent: #60a5fa;
+  --accent-2: #3b82f6;
+  --accent-soft: rgba(96, 165, 250, 0.14);
+  --warm: #fb923c;
+  --warm-soft: rgba(251, 146, 60, 0.14);
+  --ok: #4ade80;
+  --ok-soft: rgba(74, 222, 128, 0.13);
+  --pdf-badge: #f87171;
+  --pdf-badge-soft: rgba(248, 113, 113, 0.15);
+  --code-bg: #161920;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 10px 28px -4px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 24px 52px -8px rgba(0, 0, 0, 0.65);
+  --hl-y: rgba(250, 204, 21, 0.28);
+  --hl-g: rgba(74, 222, 128, 0.26);
+  --hl-b: rgba(96, 165, 250, 0.28);
+  --hl-p: rgba(244, 114, 182, 0.28);
+}
+
+html[data-theme="midnight"] {
+  --bg: #050608;
+  --bg-elev: #0c0e12;
+  --bg-soft: #13161d;
+  --bg-hover: #1b1f29;
+  --fg: #edf0f5;
+  --fg-2: #9ca3b0;
+  --fg-3: #606775;
+  --line: #191d26;
+  --line-2: #272d3b;
+  --accent: #818cf8;
+  --accent-2: #6366f1;
+  --accent-soft: rgba(129, 140, 248, 0.15);
+  --warm: #f59e0b;
+  --warm-soft: rgba(245, 158, 11, 0.14);
+  --ok: #34d399;
+  --ok-soft: rgba(52, 211, 153, 0.14);
+  --pdf-badge: #fb7185;
+  --pdf-badge-soft: rgba(251, 113, 133, 0.15);
+  --code-bg: #0a0c10;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 10px 28px -4px rgba(0, 0, 0, 0.75);
+  --shadow-lg: 0 24px 52px -8px rgba(0, 0, 0, 0.85);
+}
+
+html[data-theme="nord"] {
+  --bg: #1d222d;
+  --bg-elev: #242a38;
+  --bg-soft: #2e3646;
+  --bg-hover: #384154;
+  --fg: #eceff4;
+  --fg-2: #d8dee9;
+  --fg-3: #8892a6;
+  --line: #323b4d;
+  --line-2: #434e65;
+  --accent: #88c0d0;
+  --accent-2: #5e81ac;
+  --accent-soft: rgba(136, 192, 208, 0.15);
+  --warm: #ebcb8b;
+  --warm-soft: rgba(235, 203, 139, 0.15);
+  --ok: #a3be8c;
+  --ok-soft: rgba(163, 190, 140, 0.15);
+  --pdf-badge: #bf616a;
+  --pdf-badge-soft: rgba(191, 97, 106, 0.18);
+  --code-bg: #191d27;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 28px -4px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 24px 52px -8px rgba(0, 0, 0, 0.6);
+}
+
+:root {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Newsreader", "Charter", "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+  --font-editorial: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+  --font-dyslexic: "Verdana", "Trebuchet MS", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "Fira Code", Consolas, monospace;
+  --reader-font: var(--font-serif);
+  --reader-size: 18px;
+  --reader-lh: 1.78;
+  --reader-col: 740px;
+  --reader-zoom: 1;
+}
+
+html[data-font="serif"] { --reader-font: var(--font-serif); }
+html[data-font="sans"] { --reader-font: var(--font-sans); }
+html[data-font="editorial"] { --reader-font: var(--font-editorial); }
+html[data-font="dyslexic"] { --reader-font: var(--font-dyslexic); }
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------- Üst İlerleme Çizgisi ---------- */
+#readProgressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #8b5cf6);
+  z-index: 250;
+  transition: width 0.15s ease-out;
+  pointer-events: none;
+}
+
+/* ---------- Üst Bar (Topbar) ---------- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 120;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  background: color-mix(in srgb, var(--bg-elev) 88%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+  gap: 12px;
+}
+
+html[data-focus="1"] .topbar {
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  border: none;
+}
+html[data-focus="1"] .pro-sidebar {
+  display: none !important;
+}
+
+.tb-left, .tb-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.tb-left { flex: 1; overflow: hidden; }
+
+.brand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14.5px;
+  padding: 6px 10px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+.brand-btn:hover { background: var(--bg-soft); }
+.brand-pro-tag {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 13px;
+  color: var(--fg-2);
+}
+.crumb-sep { color: var(--fg-3); user-select: none; }
+.crumb-link {
+  background: none;
+  border: none;
+  padding: 4px 7px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--fg-2);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+}
+.crumb-link:hover { background: var(--bg-soft); color: var(--fg); }
+.crumb-cur {
+  font-weight: 600;
+  color: var(--fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+
+/* ---------- Canlı Otomatik Okuma İstatistiği Rozeti ---------- */
+.live-reading-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fg-2);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+.live-reading-pill:hover {
+  border-color: var(--accent);
+  color: var(--fg);
+  background: var(--accent-soft);
+}
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px var(--ok-soft);
+}
+
+/* ---------- Yakınlaştırma (Zoom) Kontrol Grubu ---------- */
+.zoom-ctrl-group {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1px;
+}
+.zoom-ctrl-btn {
+  border: none;
+  background: transparent;
+  padding: 4px 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  color: var(--fg-2);
+}
+.zoom-ctrl-btn:hover { background: var(--bg-hover); color: var(--fg); }
+.zoom-pct-btn {
+  min-width: 48px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+
+/* ---------- Yüzen Touchpad Zoom HUD Rozeti ---------- */
+#zoomHud {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 15px;
+  border-radius: 999px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line-2);
+  box-shadow: var(--shadow-lg);
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(10px) scale(0.96);
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+#zoomHud.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.zh-reset {
+  border: 1px solid var(--line-2);
+  background: var(--bg-soft);
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.zh-reset:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* ---------- Ana Çalışma Alanı & Sol Hızlı Gezinme Kenar Çubuğu ---------- */
+.workspace-shell {
+  display: flex;
+  min-height: calc(100vh - 54px);
+}
+
+.pro-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  background: var(--bg-elev);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 54px);
+  position: sticky;
+  top: 54px;
+  overflow: hidden;
+  transition: width 0.2s ease;
+}
+.pro-sidebar.collapsed {
+  width: 0;
+  border-right: none;
+}
+
+.sb-header {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.sb-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-3);
+}
+.sb-tree {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 8px 28px;
+}
+
+.sb-course { margin-bottom: 10px; }
+.sb-course-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+  color: var(--fg);
+}
+.sb-course-btn:hover { background: var(--bg-soft); }
+.sb-course-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sb-unit-list {
+  padding-left: 12px;
+  margin-top: 3px;
+}
+.sb-unit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 5px 8px;
+  border: none;
+  background: transparent;
+  border-radius: 7px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--fg-2);
+  text-align: left;
+  cursor: pointer;
+}
+.sb-unit-btn:hover { background: var(--bg-soft); color: var(--fg); }
+.sb-unit-btn.active {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.sb-unit-pct {
+  font-size: 11px;
+  color: var(--fg-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.sb-part-list {
+  padding-left: 10px;
+  margin: 3px 0 6px;
+  border-left: 1.5px solid var(--line);
+}
+.sb-part-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 8px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  font-size: 12px;
+  color: var(--fg-2);
+  text-align: left;
+  cursor: pointer;
+}
+.sb-part-btn:hover { background: var(--bg-soft); color: var(--fg); }
+.sb-part-btn.active {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+}
+.sb-part-btn.active .sb-part-no,
+.sb-part-btn.active .sb-part-check { color: #fff; }
+.sb-part-no {
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--fg-3);
+  min-width: 20px;
+  font-variant-numeric: tabular-nums;
+}
+.sb-part-title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sb-part-check {
+  color: var(--ok);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.main-stage {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 32px 80px;
+}
+
+/* ---------- Genel Butonlar, Rozetler ve Kartlar ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 9px;
+  border: 1px solid var(--line-2);
+  background: var(--bg-elev);
+  color: var(--fg);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.14s ease;
+  white-space: nowrap;
+}
+.btn:hover { background: var(--bg-soft); border-color: var(--fg-3); }
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn.primary:hover { background: var(--accent-2); }
+.btn.pdf-btn {
+  background: var(--pdf-badge-soft);
+  border-color: color-mix(in srgb, var(--pdf-badge) 35%, var(--line));
+  color: var(--pdf-badge);
+}
+.btn.pdf-btn:hover {
+  background: var(--pdf-badge);
+  color: #fff;
+}
+.btn.ghost {
+  background: transparent;
+  border-color: transparent;
+}
+.btn.ghost:hover { background: var(--bg-soft); }
+.btn.sm { padding: 5px 10px; font-size: 12px; border-radius: 7px; }
+.btn.danger { color: #dc2626; border-color: rgba(220, 38, 38, 0.35); }
+.btn.danger:hover { background: #dc2626; color: #fff; }
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--fg-2);
+  cursor: pointer;
+  transition: all 0.14s ease;
+}
+.icon-btn:hover { background: var(--bg-soft); color: var(--fg); }
+.icon-btn.active { background: var(--accent-soft); color: var(--accent); border-color: color-mix(in srgb, var(--accent) 30%, transparent); }
+.icon-btn.sm { width: 26px; height: 26px; border-radius: 6px; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--bg-soft);
+  color: var(--fg-2);
+}
+.badge.pdf { background: var(--pdf-badge-soft); color: var(--pdf-badge); }
+.badge.md { background: var(--accent-soft); color: var(--accent); }
+.badge.ok { background: var(--ok-soft); color: var(--ok); }
+.badge.warm { background: var(--warm-soft); color: var(--warm); }
+
+/* ---------- Kütüphane, Ders ve Ünite Görünümleri ---------- */
+.container-wide {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.hero-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 26px;
+  border-radius: 16px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.hero-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 4px;
+  letter-spacing: -0.02em;
+}
+.hero-sub {
+  color: var(--fg-2);
+  font-size: 13.5px;
+  margin: 0;
+}
+
+/* Otomatik Okuma Özeti Şeridi (Kütüphane & Ünite) */
+.analytics-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+}
+.stat-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--fg-3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+.stat-value {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.stat-meta {
+  font-size: 12px;
+  color: var(--fg-2);
+  margin-top: 3px;
+}
+
+/* Ders Kartları Izgarası */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 16px;
+}
+.course-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.course-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--line-2);
+}
+.course-card-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+.course-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.35;
+}
+.course-progress-track {
+  height: 6px;
+  background: var(--bg-soft);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.course-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+/* Ünite Kartları ve Part Listesi */
+.units-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.unit-row-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.14s ease;
+}
+.unit-row-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+.parts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 12px;
+}
+.part-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.14s ease;
+  position: relative;
+}
+.part-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+.part-card.is-done {
+  border-left: 3.5px solid var(--ok);
+}
+.part-card.is-reading {
+  border-left: 3.5px solid var(--accent);
+}
+.part-card.is-empty-slot {
+  background: color-mix(in srgb, var(--bg-soft) 55%, transparent);
+  border-style: dashed;
+  color: var(--fg-2);
+}
+.part-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.part-no-pill {
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--bg-soft);
+  color: var(--fg-2);
+}
+.part-card-title {
+  font-weight: 700;
+  font-size: 14.5px;
+  line-height: 1.4;
+  color: var(--fg);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.part-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--fg-3);
+}
+
+/* ---------- Ünite Otomatik Okuma İstatistikleri Paneli ---------- */
+.unit-analytics-panel {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.uap-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.uap-title {
+  font-size: 15px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.uap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.uap-table th {
+  text-align: left;
+  padding: 8px 10px;
+  color: var(--fg-3);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+}
+.uap-table td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+.uap-table tr:last-child td { border-bottom: none; }
+.uap-table tr:hover td { background: var(--bg-soft); cursor: pointer; }
+.uap-time-bar-wrap {
+  width: 110px;
+  height: 7px;
+  background: var(--bg-soft);
+  border-radius: 999px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.uap-time-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+/* ---------- Markdown & LaTeX Akademik Okuyucu (Article) ---------- */
+.reader-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 28px;
+  max-width: 1360px;
+  margin: 0 auto;
+}
+#articleWrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+}
+#article {
+  width: 100%;
+  max-width: var(--reader-col);
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 44px 52px 60px;
+  box-shadow: var(--shadow-sm);
+  font-family: var(--reader-font);
+  font-size: var(--reader-size);
+  line-height: var(--reader-lh);
+  color: var(--fg);
+  transition: max-width 0.18s ease;
+}
+html[data-justify="1"] #article p {
+  text-align: justify;
+  hyphens: auto;
+}
+#article h1, #article h2, #article h3, #article h4 {
+  font-family: var(--font-sans);
+  color: var(--fg);
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+}
+#article h1 { font-size: 1.65em; font-weight: 800; margin-top: 0; padding-bottom: 0.45em; border-bottom: 1px solid var(--line); }
+#article h2 { font-size: 1.34em; font-weight: 700; }
+#article h3 { font-size: 1.14em; font-weight: 700; }
+#article p { margin: 0 0 1.08em; }
+#article ul, #article ol { margin: 0 0 1.15em; padding-left: 1.5em; }
+#article li { margin-bottom: 0.4em; }
+#article blockquote {
+  margin: 1.25em 0;
+  padding: 14px 20px;
+  border-left: 4px solid var(--accent);
+  background: var(--bg-soft);
+  border-radius: 0 10px 10px 0;
+  color: var(--fg-2);
+}
+#article pre {
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 15px 18px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.84em;
+  line-height: 1.55;
+  margin: 1.25em 0;
+}
+#article code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+#article pre code { background: none; padding: 0; font-size: inherit; }
+#article table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4em 0;
+  font-size: 0.92em;
+}
+#article th, #article td {
+  border: 1px solid var(--line-2);
+  padding: 9px 12px;
+  text-align: left;
+}
+#article th { background: var(--bg-soft); font-family: var(--font-sans); font-weight: 700; }
+#article img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 1.4em auto;
+}
+
+/* Matematik Blokları (MathJax) */
+.eq {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 1.2em 0;
+  padding: 12px 16px;
+  background: color-mix(in srgb, var(--bg-soft) 55%, transparent);
+  border-radius: 10px;
+  overflow-x: auto;
+}
+.eq-body { flex: 1; overflow-x: auto; text-align: center; }
+.eq-no {
+  font-family: var(--font-sans);
+  font-size: 0.78em;
+  color: var(--fg-3);
+  user-select: none;
+}
+html[data-eqnum="0"] .eq-no { display: none; }
+
+/* Metin Vurguları (Highlights) */
+mark.hl-y, .pdf-hl-box.hl-y { background: var(--hl-y); color: inherit; border-radius: 3px; cursor: pointer; }
+mark.hl-g, .pdf-hl-box.hl-g { background: var(--hl-g); color: inherit; border-radius: 3px; cursor: pointer; }
+mark.hl-b, .pdf-hl-box.hl-b { background: var(--hl-b); color: inherit; border-radius: 3px; cursor: pointer; }
+mark.hl-p, .pdf-hl-box.hl-p { background: var(--hl-p); color: inherit; border-radius: 3px; cursor: pointer; }
+
+/* Sağ İçindekiler (TOC) Paneli */
+.toc-aside {
+  width: 245px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 78px;
+  max-height: calc(100vh - 104px);
+  overflow-y: auto;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 14px;
+  font-size: 12.5px;
+}
+.toc-item {
+  display: block;
+  padding: 5px 8px;
+  border-radius: 6px;
+  color: var(--fg-2);
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.toc-item:hover { background: var(--bg-soft); color: var(--fg); }
+.toc-item.l3 { padding-left: 18px; font-size: 12px; color: var(--fg-3); }
+
+/* ---------- Ultra-HD Native PDF Okuyucu Stilleri ---------- */
+.pdf-reader-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.pdf-toolbar {
+  position: sticky;
+  top: 54px;
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 9px 14px;
+  background: color-mix(in srgb, var(--bg-elev) 92%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+.pdf-tb-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pdf-page-input {
+  width: 52px;
+  text-align: center;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--line-2);
+  background: var(--bg-soft);
+  font-weight: 700;
+  font-size: 12.5px;
+}
+.pdf-workspace {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.pdf-drawer {
+  width: 265px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 116px;
+  max-height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.pdf-drawer-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line);
+}
+.pdf-drawer-tab {
+  flex: 1;
+  padding: 8px 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--fg-2);
+}
+.pdf-drawer-tab.active {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  background: var(--accent-soft);
+}
+#pdfDrawerBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+.pdf-thumbs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.pdf-thumb-item {
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  background: var(--bg-soft);
+}
+.pdf-thumb-item.is-current { border-color: var(--accent); background: var(--accent-soft); }
+.pdf-thumb-canvas { width: 100%; height: auto; border-radius: 4px; display: block; }
+.pdf-thumb-label { font-size: 11px; font-weight: 600; margin-top: 4px; }
+
+#pdfStage {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+  padding: 6px 0 40px;
+}
+.pdf-pages-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+.pdf-pages-grid.pdf-spread-double {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.pdf-page-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--line-2);
+  margin-bottom: 14px;
+  user-select: text;
+}
+.pdf-page-inner {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9px;
+  background: #ffffff;
+  transform-origin: center center;
+}
+.pdf-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Akıllı PDF Renk Filtreleri (Görselleri Bozmadan Gece/Sepya Modu) */
+.pdf-filter-original .pdf-canvas { filter: none !important; }
+html[data-theme="sepia"] .pdf-filter-auto .pdf-canvas,
+.pdf-filter-sepia .pdf-canvas {
+  filter: sepia(0.26) brightness(0.97) contrast(1.02);
+}
+html[data-theme="dark"] .pdf-filter-auto .pdf-canvas,
+html[data-theme="midnight"] .pdf-filter-auto .pdf-canvas,
+html[data-theme="nord"] .pdf-filter-auto .pdf-canvas,
+.pdf-filter-dark .pdf-canvas {
+  filter: invert(0.90) hue-rotate(180deg) contrast(1.04);
+}
+
+/* PDF Seçilebilir Metin Katmanı (PDF.js TextLayer) */
+.pdf-text-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  line-height: 1.0;
+  text-size-adjust: none;
+  forced-color-adjust: none;
+  transform-origin: 0 0;
+  z-index: 3;
+}
+.pdf-text-layer span,
+.pdf-text-layer br {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+.pdf-text-layer ::selection {
+  background: rgba(37, 99, 235, 0.28);
+}
+.pdf-text-layer span.pdf-search-hit {
+  background: rgba(250, 204, 21, 0.45);
+  border-radius: 2px;
+}
+
+.pdf-hl-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.pdf-hl-box {
+  position: absolute;
+  pointer-events: auto;
+  mix-blend-mode: multiply;
+}
+html[data-theme="dark"] .pdf-hl-box,
+html[data-theme="midnight"] .pdf-hl-box,
+html[data-theme="nord"] .pdf-hl-box {
+  mix-blend-mode: screen;
+}
+
+.pdf-page-badge {
+  position: absolute;
+  bottom: -24px;
+  right: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--fg-3);
+}
+
+/* ---------- Seçim Balonu (Metin & PDF Vurgulama) ---------- */
+#selPop {
+  position: fixed;
+  z-index: 280;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  box-shadow: var(--shadow-lg);
+}
+#selPop.show { display: inline-flex; }
+.hl-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+.hl-dot.y { background: #facc15; }
+.hl-dot.g { background: #4ade80; }
+.hl-dot.b { background: #60a5fa; }
+.hl-dot.p { background: #f472b6; }
+
+/* ---------- Modallar & Sekmeli Ayarlar Menüsü ---------- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  background: rgba(8, 10, 15, 0.58);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-card {
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  background: var(--bg-elev);
+  border: 1px solid var(--line-2);
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.modal-card.lg { max-width: 860px; }
+.modal-head {
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.modal-title { font-size: 16.5px; font-weight: 800; margin: 0; }
+.modal-body {
+  padding: 20px 22px;
+  overflow-y: auto;
+  flex: 1;
+}
+.modal-foot {
+  padding: 14px 22px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  background: var(--bg-soft);
+}
+
+/* Başlık Adayı Çipleri (Title Candidate Chips) */
+.title-cands-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.title-cand-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--line-2);
+  background: var(--bg-soft);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  max-width: 100%;
+  text-align: left;
+}
+.title-cand-chip:hover, .title-cand-chip.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.title-cand-src {
+  font-size: 10px;
+  text-transform: uppercase;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--bg-elev);
+  color: var(--fg-3);
+}
+
+/* Sekmeli Ayarlar Menüsü */
+.settings-tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--line);
+  padding: 0 22px;
+  background: var(--bg-soft);
+  overflow-x: auto;
+}
+.settings-tab-btn {
+  padding: 11px 14px;
+  border: none;
+  background: transparent;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--fg-2);
+  cursor: pointer;
+  border-bottom: 2.5px solid transparent;
+  white-space: nowrap;
+}
+.settings-tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.theme-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+  gap: 10px;
+}
+.theme-swatch-btn {
+  padding: 12px;
+  border-radius: 11px;
+  border: 2px solid var(--line);
+  cursor: pointer;
+  text-align: left;
+  font-weight: 700;
+  font-size: 12.5px;
+}
+.theme-swatch-btn.active { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+/* Form Elemanları */
+.field { margin-bottom: 14px; }
+.field-label { display: block; font-size: 12.5px; font-weight: 700; margin-bottom: 6px; color: var(--fg-2); }
+.inp, .sel, .txtarea {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 9px;
+  border: 1px solid var(--line-2);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 13.5px;
+}
+.inp:focus, .sel:focus, .txtarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.txtarea { min-height: 150px; resize: vertical; font-family: var(--font-mono); font-size: 12.5px; }
+
+/* Bildirim (Toast) */
+#toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  z-index: 320;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.muted { color: var(--fg-3); }
+.row-between { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.flex-gap { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+@media (max-width: 960px) {
+  .pro-sidebar { position: fixed; left: 0; top: 54px; z-index: 150; box-shadow: var(--shadow-lg); }
+  .toc-aside { display: none; }
+  #article { padding: 28px 22px 44px; }
+}

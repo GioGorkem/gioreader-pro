@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Production & Build outputs
+dist/
+build/
+out/
+
+# Personal study data & course notes
+.gioreader-pro/
+*.pdf.meta.json
+*.local
+
+# Internal test & scratch logs
+*.log
+self-test-result.json
+run_test.ps1
+test-tl.ps1
+test_pdfjs.js
+NIGHT_SHIFT_ROADMAP.md
+SABAH_RAPORU.md
+
+# Operating System & IDE
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
